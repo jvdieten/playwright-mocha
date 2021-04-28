@@ -8,6 +8,7 @@ import scope from './scope';
 export const mochaHooks: RootHookObject = {
   async beforeAll() {
     scope.browser = await ({chromium, webkit, firefox}[scope.config.browser] || chromium).launch(scope.config.playwrightLaunchOptions);
+    console.log(`Starting your tests in ${scope.config.browser} browser`);
   },
   async afterAll() {
     await scope.browser.close();

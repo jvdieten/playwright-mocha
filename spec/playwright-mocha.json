@@ -14,8 +14,6 @@
     }
   },
   "mochaOptions": {
-    "require": [
-      "ts-node/register"
-    ]
+
   }
 }
