@@ -63,7 +63,7 @@ The only thing you need now is a configuration file the paramaters browser and t
 
 ## Create test 
 
-You are able to use typescript out of the box but also js. See the [examples](./examples) folder for a javascript example.
+You are able to use typescript out of the box but also javascript is supported. See the [examples](./examples) folder for a javascript example.
 
 Typescript example 
 
