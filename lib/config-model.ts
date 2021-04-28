@@ -3,7 +3,7 @@ import { BrowserContextOptions, LaunchOptions } from 'playwright-core';
 
 export interface PlaywrightMochaConfig {
   browser: string;
-  testFilesBaseDir?: string;
+  testFilesBaseDir: string;
   playwrightLaunchOptions: LaunchOptions;
   playwrightContextOptions: BrowserContextOptions;
   mochaOptions: MochaOptions;

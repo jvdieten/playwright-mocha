@@ -1,27 +1,25 @@
 #! node
 import Mocha from 'mocha';
+import { MochaOptions } from 'mocha';
 import program from 'commander';
 import scope from './scope';
 import fs from 'fs';
 import path from 'path';
 import glob from 'glob';
-import {create, register} from 'ts-node';
+import { register } from 'ts-node';
 
 import { mochaHooks } from './hooks';
 import { PlaywrightMochaConfig } from './config-model';
-import { MochaOptions } from 'mocha';
 
-create();
-register();
 
 let config: PlaywrightMochaConfig;
-scope.config = { 
-  browser: 'chromium', 
-  playwrightLaunchOptions: {}, 
-  playwrightContextOptions: {}, 
-  mochaOptions: {} 
+scope.config = {
+  browser: 'chromium',
+  testFilesBaseDir: 'spec',
+  playwrightLaunchOptions: {},
+  playwrightContextOptions: {},
+  mochaOptions: {}
 };
-program.version('0.0.1');
 program
   .option('-c, --config <path>', 'path to playwright-mocha config file');
 
@@ -31,6 +29,15 @@ const configFileContents = options.config ? fs.readFileSync(options.config, { en
 config = JSON.parse(configFileContents);
 scope.config = config;
 
+register({
+  compilerOptions:
+  {
+    esModuleInterop: true,
+    target: "es2016",
+    module: "commonjs"
+  },
+  transpileOnly: true
+});
 
 const mocha = new Mocha(getMochaOptions());
 setMochaTestFiles();
@@ -45,9 +52,10 @@ function getMochaOptions(): MochaOptions {
 }
 
 function setMochaTestFiles() {
-  const wdir = config.testFilesBaseDir !== undefined ? config.testFilesBaseDir : 'spec';
-  const testFiles = glob.sync('**/*.spec.ts', {cwd: wdir});
-  testFiles.forEach(file => {mocha.addFile(path.join(wdir, file))});
+  const testFiles = glob.sync('**/*.spec.{js,ts}', { cwd: config.testFilesBaseDir });
+  testFiles.forEach(file => {
+    mocha.addFile(path.join(config.testFilesBaseDir, file))
+  });
 }
 
-export {scope};
+export { scope as test };

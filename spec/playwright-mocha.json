@@ -1,5 +1,6 @@
 {
   "browser": "firefox",
+  "testFilesBaseDir": "spec",
   "playwrightLaunchOptions": {
     "headless": false
   },
@@ -14,6 +15,5 @@
     }
   },
   "mochaOptions": {
-
   }
 }
