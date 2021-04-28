@@ -1,7 +1,7 @@
 # playwright-mocha
 
 <!-- badges: start -->
-
+[![NPM](https://nodei.co/npm/playwright-mocha.png)](https://npmjs.org/package/playwright-mocha)
 <!-- badges: end -->
 
 The aim of playwright-mocha is to deliver a lightweight test-framework that is combining the power of [mocha](https://mochajs.org/) and [playwright](https://playwright.dev/). You should be able to use all configuration options you can provide via mocha or playwright. If you miss something raise an issue or open a pull request.
