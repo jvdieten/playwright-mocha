@@ -15,12 +15,6 @@ To install the framework:
 
 `npm install playwright-mocha`
 
-All the playwright browsers are added as peer dependencies so you are in full control of the browsers you want to include.
-
-To install chromium browser:
-
-`npm install playwright-chromium`
-
 <br>
 
 ## Configuration

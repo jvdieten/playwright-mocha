@@ -1,6 +1,6 @@
 {
   "name": "playwright-mocha",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "super lightweight playwright mocha test framework",
   "main": "dist/index.js",
   "bin": {
@@ -29,19 +29,14 @@
     "glob": "^7.1.6",
     "mocha": "^8.3.2",
     "playwright-core": "^1.10.0",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.4"
-  },
-  "peerDependencies": {
-    "playwright-chromium": "^1.10.0",
-    "playwright-webkit": "^1.10.0",
-    "playwright-firefox": "^1.10.0"
-  },
-  "devDependencies": {
-    "@types/glob": "^7.1.3",
     "@types/mocha": "^8.2.2",
     "playwright-chromium": "^1.10.0",
     "playwright-firefox": "^1.10.0",
-    "playwright-webkit": "^1.10.0"
+    "playwright-webkit": "^1.10.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3"
   }
 }
