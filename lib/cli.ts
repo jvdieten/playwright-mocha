@@ -53,7 +53,7 @@ export async function handleCLI(): Promise<PlaywrightMochaConfig> {
       const configAnswers = await inquirer.prompt(configQuestions);
       console.log(configAnswers);
       newConfig.browser = configAnswers.browser;
-      newConfig.playwrightLaunchOptions = configAnswers.dir;
+      newConfig.testFilesBaseDir = configAnswers.dir;
       writeConfig(newConfig);
       console.log('Configuration file saved!');
       console.log('To execute your test run npx playwright-mocha!');

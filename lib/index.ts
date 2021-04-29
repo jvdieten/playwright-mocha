@@ -21,7 +21,10 @@ handleCLI().then(config => {
   });
   
   const mocha = new Mocha(getMochaOptions());
-  setMochaTestFiles();
+  const testFiles = glob.sync('**/*.spec.{js,ts}', { cwd: scope.config.testFilesBaseDir });
+  testFiles.forEach(file => {
+    mocha.addFile(path.join(scope.config.testFilesBaseDir, file))
+  });
   mocha.run()
     .on('end', function () {
       console.log('All done');
@@ -29,15 +32,11 @@ handleCLI().then(config => {
 });
 
 function getMochaOptions(): MochaOptions {
+  if (!scope.config.mochaOptions){
+    scope.config.mochaOptions = {};
+  }
   scope.config.mochaOptions.rootHooks = mochaHooks;
   return scope.config.mochaOptions;
-}
-
-function setMochaTestFiles() {
-  const testFiles = glob.sync('**/*.spec.{js,ts}', { cwd: scope.config.testFilesBaseDir });
-  testFiles.forEach(file => {
-    mocha.addFile(path.join(scope.config.testFilesBaseDir, file))
-  });
 }
 
 export { scope as test };
