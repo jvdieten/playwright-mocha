@@ -1,6 +1,6 @@
 {
   "name": "playwright-mocha",
-  "version": "0.0.9",
+  "version": "0.0.8",
   "description": "super lightweight playwright mocha test framework",
   "main": "dist/index.js",
   "bin": {
@@ -13,7 +13,7 @@
     "pretest": "npm run build",
     "test": "npm run test:only",
     "test:only": "mocha -r ts-node/register \"test/*.spec.ts\"",
-    "prepublish": "npm run test"
+    "prepublish": "npm run test && npm version patch"
   },
   "author": "Joost van Dieten",
   "types": "dist/index.d.ts",
