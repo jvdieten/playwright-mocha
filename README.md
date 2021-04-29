@@ -7,7 +7,7 @@
 The aim of playwright-mocha is to deliver a lightweight test-framework that is combining the power of [mocha](https://mochajs.org/) and [playwright](https://playwright.dev/). You should be able to use all configuration options you can provide via mocha or playwright. If you miss something raise an issue or open a pull request.
 
 
-## Installation and configuration
+## Installation and configuration via CLI
 
 <br>
 
@@ -17,7 +17,16 @@ To install the framework:
 
 <br>
 
-## Configuration
+To run:
+
+`npx playwright-mocha`
+
+If no configuration file is found the CLI is automatically activated to setup the file via the CLI.
+
+![cli](img/cli.png)
+
+
+## Advanced configuration
 
 The only thing you need now is a configuration file the paramaters browser and testFilesBaseDir are custom framework paramaters the rest of the paramaters are 1:1 mapped to specific playwright or mocha options.
 
@@ -82,5 +91,3 @@ You can also provide a configuration file at a different location
 
 `npx playwright-mocha --config examples/playwright-mocha.json`
 
-## 1.0 Release todos
-- Create default config via cli on initial run
