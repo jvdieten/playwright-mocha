@@ -57,7 +57,7 @@ The only thing you need now is a configuration file the paramaters browser and t
 
 ## Create test 
 
-You are able to use typescript out of the box but also javascript is supported. See the [examples](./examples) folder for a javascript example.
+You are able to use typescript out of the box but also javascript is supported.
 
 Typescript example 
 
@@ -76,12 +76,11 @@ it('TS checks the title of the page', async() => {
 
 If you run the command below the framework will try to find the config file 'playwright-mocha.json' in the current working directory.
 
-`playwright-mocha`
+`npx playwright-mocha`
 
 You can also provide a configuration file at a different location
 
-`playwright-mocha --config examples/playwright-mocha.json`
+`npx playwright-mocha --config examples/playwright-mocha.json`
 
 ## 1.0 Release todos
 - Create default config via cli on initial run
-- Support concurrent multiple browser runs

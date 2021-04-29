@@ -1,6 +1,6 @@
 {
   "browser": "firefox",
-  "testFilesBaseDir": "examples",
+  "testFilesBaseDir": "test/specs",
   "playwrightLaunchOptions": {
     "headless": false
   },

@@ -1,14 +1,12 @@
 {
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "esModuleInterop": true,
     "module": "commonjs",
+    "resolveJsonModule": true,
     "moduleResolution": "node",
-    "outDir": "./dist",
     "strict": true,
     "target": "es2016"
-  },
-  "include": [
-    "./lib/**/*.ts"
-  ]
+  }
 }

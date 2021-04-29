@@ -1,13 +1,19 @@
 {
   "name": "playwright-mocha",
-  "version": "0.0.4",
+  "version": "0.0.8",
   "description": "super lightweight playwright mocha test framework",
   "main": "dist/index.js",
   "bin": {
-    "playwright-mocha": "./dist/index.js"
+    "playwright-mocha": "bin/playwright-mocha.js"
   },
   "scripts": {
-    "build": "tsc"
+    "clean": "rimraf ./dist",
+    "prebuild": "npm run clean",
+    "build": "tsc -p tsconfig.build.json",
+    "pretest": "npm run build",
+    "test": "npm run test:only",
+    "test:only": "mocha -r ts-node/register \"test/*.spec.ts\"",
+    "prepublish": "npm run test"
   },
   "author": "Joost van Dieten",
   "types": "dist/index.d.ts",
@@ -37,6 +43,9 @@
     "typescript": "^4.2.4"
   },
   "devDependencies": {
-    "@types/glob": "^7.1.3"
+    "@types/chai": "^4.2.17",
+    "@types/glob": "^7.1.3",
+    "strip-ansi": "7.0.0",
+    "chai": "4.3.4"
   }
 }

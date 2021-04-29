@@ -1,18 +1,14 @@
-#! node
 import Mocha from 'mocha';
 import { MochaOptions } from 'mocha';
 import program from 'commander';
 import scope from './scope';
-import fs from 'fs';
-import path from 'path';
 import glob from 'glob';
+import path from 'path';
+
 import { register } from 'ts-node';
-
 import { mochaHooks } from './hooks';
-import { PlaywrightMochaConfig } from './config-model';
+import { loadConfig } from './config';
 
-
-let config: PlaywrightMochaConfig;
 scope.config = {
   browser: 'chromium',
   testFilesBaseDir: 'spec',
@@ -25,9 +21,8 @@ program
 
 program.parse(process.argv);
 const options = program.opts();
-const configFileContents = options.config ? fs.readFileSync(options.config, { encoding: 'utf8' }) : fs.readFileSync('./playwright-mocha.json', { encoding: 'utf8' });
-config = JSON.parse(configFileContents);
-scope.config = config;
+const configPath = options.config ? options.config : './playwright-mocha.json';
+scope.config = loadConfig(configPath);
 
 register({
   compilerOptions:
@@ -47,14 +42,14 @@ mocha.run()
   });
 
 function getMochaOptions(): MochaOptions {
-  config.mochaOptions.rootHooks = mochaHooks;
-  return config.mochaOptions;
+  scope.config.mochaOptions.rootHooks = mochaHooks;
+  return scope.config.mochaOptions;
 }
 
 function setMochaTestFiles() {
-  const testFiles = glob.sync('**/*.spec.{js,ts}', { cwd: config.testFilesBaseDir });
+  const testFiles = glob.sync('**/*.spec.{js,ts}', { cwd: scope.config.testFilesBaseDir });
   testFiles.forEach(file => {
-    mocha.addFile(path.join(config.testFilesBaseDir, file))
+    mocha.addFile(path.join(scope.config.testFilesBaseDir, file))
   });
 }
 
