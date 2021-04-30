@@ -25,6 +25,22 @@ If no configuration file is found the CLI is automatically activated to setup th
 
 ![cli](img/cli.png)
 
+## Create test 
+
+You are able to use typescript out of the box but also javascript is supported. It will execute tests named **.spec.(ts|js). 
+
+Typescript example 
+
+```typescript
+import assert from 'assert';
+import { test } from 'playwright-mocha';
+
+it('TS checks the title of the page', async() => {
+  await test.page.goto('https://headlesstesting.com/');
+  const title = await test.page.title();
+  assert.strictEqual(title, 'Headless Testing with Puppeteer and Playwright in the Cloud.');
+})
+```
 
 ## Advanced configuration
 
@@ -62,23 +78,6 @@ The only thing you need now is a configuration file the paramaters browser and t
   "mochaOptions": {
   }
 }
-```
-
-## Create test 
-
-You are able to use typescript out of the box but also javascript is supported.
-
-Typescript example 
-
-```typescript
-import assert from 'assert';
-import { test } from 'playwright-mocha';
-
-it('TS checks the title of the page', async() => {
-  await test.page.goto('https://headlesstesting.com/');
-  const title = await test.page.title();
-  assert.strictEqual(title, 'Headless Testing with Puppeteer and Playwright in the Cloud.');
-})
 ```
 
 ## Run test
