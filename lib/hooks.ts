@@ -15,6 +15,7 @@ export const mochaHooks: RootHookObject = {
   },
   async beforeEach() {
     const context = await scope.browser.newContext(scope.config.playwrightContextOptions);
+    scope.context = context;
     scope.page = await context.newPage();
   },
   async afterEach() {
