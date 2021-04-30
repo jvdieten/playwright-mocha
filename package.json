@@ -1,6 +1,6 @@
 {
   "name": "playwright-mocha",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "super lightweight playwright mocha test framework",
   "main": "dist/index.js",
   "bin": {

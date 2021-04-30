@@ -23,7 +23,7 @@ To run:
 
 If no configuration file is found the CLI is automatically activated to setup the file via the CLI.
 
-![cli](img/cli.png)
+![](.images/cli.png)
 
 ## Create test 
 
