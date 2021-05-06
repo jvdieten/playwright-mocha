@@ -1,5 +1,5 @@
 {
-  "browser": "firefox",
+  "browser": "chromium",
   "testFilesBaseDir": "test/specs",
   "playwrightLaunchOptions": {
     "headless": false

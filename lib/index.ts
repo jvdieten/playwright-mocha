@@ -21,7 +21,7 @@ handleCLI().then(config => {
   });
   
   const mocha = new Mocha(getMochaOptions());
-  const testFiles = glob.sync('**/*.spec.{js,ts}', { cwd: scope.config.testFilesBaseDir });
+  const testFiles = glob.sync('**/*.{js,ts}', { cwd: scope.config.testFilesBaseDir });
   testFiles.forEach(file => {
     mocha.addFile(path.join(scope.config.testFilesBaseDir, file))
   });
