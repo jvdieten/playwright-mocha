@@ -59,7 +59,8 @@ The only thing you need now is a configuration file the paramaters browser and t
  
 ## Parallel execution
 
-The framework supports parallel execution for each seperate test file. To enable this feature you have can the following to the "mochaOptions"
+The framework supports parallel execution for each test/spec file. 
+To enable this feature you can add the following lines to the "mochaOptions" in the configuration file.
 
 ```json
     "require": ["node_modules/playwright-mocha/dist/hooks.js"],
