@@ -2,23 +2,29 @@ import { RootHookObject } from 'mocha';
 import { chromium } from 'playwright-chromium';
 import { firefox } from 'playwright-firefox';
 import { webkit } from 'playwright-webkit';
+import { loadConfig } from './config';
 
-import scope from './scope';
+import { TestScope } from './scope';
 
 export const mochaHooks: RootHookObject = {
   async beforeAll() {
-    scope.browser = await ({chromium, webkit, firefox}[scope.config.browser] || chromium).launch(scope.config.playwrightLaunchOptions);
-    console.log(`Starting your tests in ${scope.config.browser} browser`);
+    const config = loadConfig('./playwright-mocha.json');
+    if (config){
+      //@ts-ignore
+      TestScope.scope = {};
+      TestScope.scope.config = config;
+      TestScope.scope.browser = await ({chromium, webkit, firefox}[TestScope.scope.config.browser] || chromium).launch(TestScope.scope.config.playwrightLaunchOptions);
+    }
   },
   async afterAll() {
-    await scope.browser.close();
+    await TestScope.scope.browser.close();
   },
   async beforeEach() {
-    const context = await scope.browser.newContext(scope.config.playwrightContextOptions);
-    scope.context = context;
-    scope.page = await context.newPage();
+    const context = await TestScope.scope.browser.newContext(TestScope.scope.config.playwrightContextOptions);
+    TestScope.scope.context = context;
+    TestScope.scope.page = await context.newPage();
   },
   async afterEach() {
-    await scope.page.close();
+    await TestScope.scope.page.close();
   }
 };

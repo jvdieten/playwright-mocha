@@ -27,17 +27,18 @@ If no configuration file is found the CLI is automatically activated to setup th
 
 ## Create test 
 
-You are able to use typescript out of the box but also javascript is supported. It will execute tests named **.spec.(ts|js). 
+Example
 
-Typescript example 
+```javascript
+const assert = require('assert');
+const { PlaywrightMocha } = require('playwright-mocha/dist/pm');
 
-```typescript
-import assert from 'assert';
-import { test } from 'playwright-mocha';
+it('checks the title of the page', async () => {
 
-it('TS checks the title of the page', async() => {
-  await test.page.goto('https://headlesstesting.com/');
-  const title = await test.page.title();
+  const page = PlaywrightMocha.page();
+
+  await page.goto('https://www.headlesstesting.com/');
+  const title = await page.title();
   assert.strictEqual(title, 'Headless Testing with Puppeteer and Playwright in the Cloud.');
 })
 ```
@@ -55,9 +56,18 @@ The only thing you need now is a configuration file the paramaters browser and t
 | mochaOptions | https://mochajs.org/api/mocha |
 
 <br>
+ 
+## Parallel execution
+
+The framework supports parallel execution for each seperate test file. To enable this feature you have can the following to the "mochaOptions"
+
+```json
+    "require": ["node_modules/playwright-mocha/dist/hooks.js"],
+    "parallel": true
+```
 
 
-### example config
+### example config with parallel execution
 ```json 
 {
   "browser": "firefox",
@@ -76,17 +86,9 @@ The only thing you need now is a configuration file the paramaters browser and t
     }
   },
   "mochaOptions": {
+    "timeout": 30000,
+    "require": ["node_modules/playwright-mocha/dist/hooks.js"],
+    "parallel": true
   }
 }
 ```
-
-## Run test
-
-If you run the command below the framework will try to find the config file 'playwright-mocha.json' in the current working directory.
-
-`npx playwright-mocha`
-
-You can also provide a configuration file at a different location
-
-`npx playwright-mocha --config examples/playwright-mocha.json`
-

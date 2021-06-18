@@ -36,24 +36,21 @@ const configQuestions = [
 ];
 
 export async function handleCLI(): Promise<PlaywrightMochaConfig> {
-  program
-    .option('-c, --config <path>', 'path to playwright-mocha config file');
 
   program.parse(process.argv);
-  const options = program.opts();
 
-  const configPath = options.config ? options.config : './playwright-mocha.json';
+  const configPath = './playwright-mocha.json';
   const config = loadConfig(configPath);
   if (config) {
     return config;
   } else {
-    console.log(`Configuration file not found at location ${configPath}`);
     const answer = await inquirer.prompt(generateConfigurationPrompt);
     if (answer.configure){
       const configAnswers = await inquirer.prompt(configQuestions);
       console.log(configAnswers);
       newConfig.browser = configAnswers.browser;
       newConfig.testFilesBaseDir = configAnswers.dir;
+      newConfig.mochaOptions.timeout = 30000;
       writeConfig(newConfig);
       console.log('Configuration file saved!');
       console.log('To execute your test run npx playwright-mocha!');

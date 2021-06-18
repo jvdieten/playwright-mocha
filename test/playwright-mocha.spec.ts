@@ -17,12 +17,13 @@ describe('playwright-mocha', function () {
   describe('configuration file', function () {
 
     it('accepts a valid configuration file', () => {
-      const { status } = run({ args: ['--config', 'test/playwright-mocha.json'] });
+      const { status, stdout } = run({ args: [] });
+      console.log(stdout.toString());
       expect(status).to.equal(0);
     });
 
     it('gives an error if no configuration file is found', () => {
-      const { stdout } = run({ args: [] });
+      const { stdout } = run({ args: ['-c', 'non-existing.conf.js'] });
       expect(stdout.toString()).to.contain('Configuration file not found at location');
     });
 

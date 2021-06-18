@@ -15,7 +15,9 @@
     }
   },
   "mochaOptions": {
+    "timeout": 30000,
     "parallel": true,
+    "require": ["dist/hooks"],
     "jobs": 2
   }
 }

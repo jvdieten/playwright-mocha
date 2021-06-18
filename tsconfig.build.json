@@ -3,5 +3,5 @@
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["lib", "bin"]
+  "include": ["lib", "bin", "lib/pm"]
 }
